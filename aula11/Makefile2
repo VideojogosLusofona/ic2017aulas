@@ -1,0 +1,18 @@
+# Antes de usar fazer: cp Makefile2 Makefile
+
+CC=gcc
+CFLAGS=-Wall -Wextra -Wpedantic -std=c99 -g
+PROGRAM=testcars
+
+$(PROGRAM): $(PROGRAM).o car.o
+	$(CC) $(PROGRAM).o car.o -o $(PROGRAM)
+
+$(PROGRAM).o: $(PROGRAM).c car.h
+	$(CC) $(CFLAGS) -c -o $(PROGRAM).o $(PROGRAM).c
+
+car.o: car.c car.h
+	$(CC) $(CFLAGS) -c -o car.o car.c
+
+clean:
+	rm -f $(PROGRAM) *.o
+
